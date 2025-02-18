@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Over</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        margin: 10px;
+        font-family: "Roboto", sans-serif;
+        background-color: rgba(137, 193, 94, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+      }
+      .img {
+        align-items: center;
+      }
+      .new-game {
+        margin-top: 25px;
+        width: 174px;
+        height: 44px;
+        border-radius: 9px;
+        background-color: rgba(255, 255, 255, 1);
+        cursor: pointer;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 17.58px;
+      }
+      #rulesButton {
+        position: absolute;
+        width: 122px;
+        height: 45px;
+        top: 623px;
+        left: 1265px;
+        border-radius: 13px;
+        border: 4px solid white;
+        background-color: rgba(137, 193, 94, 1);
+        font-weight: 600;
+        font-size: x-large;
+        color: white;
+      }
+      .popup {
+        display: none;
+        position: absolute;
+        top: 222px;
+        left: 50%;
+        transform: translateX(-50%); 
+        width: 303px;
+        height: auto;
+        background-color: #004429;
+        border: 9px solid white;
+        border-radius: 8px;
+        z-index: 1000;
+      }
+      .popup-content {
+        padding: 20px;
+        border-radius: 18px;
+      }
+      .close-button {
+        color: #f50101;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .insidebox {
+        margin: 1em 0;
+        color: rgba(255, 255, 255, 1);
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 17.23px;
+        list-style: none;
+        padding: 0;
+      }
+      .insidebox li {
+        position: relative;
+        padding-left: 20px;
+      }
+      .insidebox li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 10px;
+        height: 10px;
+        background-color: #ffd600;
+        border-radius: 2px;
+      }
+      .Rule {
+        text-align: center;
+        color: rgba(255, 255, 255, 1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="img">
+      <img
+        src="./images/Screenshot 2024-11-25 170555.png"
+        alt="You won the match!"
+        width="604px"
+        height="493px"
+      />
+    </div>
+    <div>
+      <button class="new-game" onclick="startNewGame()">PLAY AGAIN</button>
+      <button id="rulesButton" aria-label="View game rules">RULES</button>
+    </div>
+    <div
+      id="rulesPopup"
+      class="popup"
+      role="dialog"
+      aria-labelledby="rulesTitle"
+      aria-hidden="true"
+    >
+      <div class="popup-content">
+        <span class="close-button" id="closeButton" aria-label="Close rules"
+          >&times;</span
+        >
+        <h2 class="Rule" id="rulesTitle">Game Rules</h2>
+        <ul class="insidebox">
+          <li>
+            Rock beats scissors, scissors beat paper, and paper beats rock.
+          </li>
+          <li>
+            Agree ahead of time whether you'll count off "rock, paper, scissors,
+            shoot" or just "rock, paper, scissors".
+          </li>
+          <li>
+            Use rock, paper, scissors to settle minor decisions or simply play
+            to pass the time.
+          </li>
+          <li>
+            If both players lay down the same hand, each player lays down
+            another hand.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      function startNewGame() {
+        window.location.href = "index.html";
+      }
+      const rulesButton = document.getElementById("rulesButton");
+      const closeButton = document.getElementById("closeButton");
+      const rulesPopup = document.getElementById("rulesPopup");
+
+      if (rulesButton) {
+        rulesButton.onclick = function () {
+          rulesPopup.style.display = "block";
+          rulesPopup.setAttribute("aria-hidden", "false");
+        };
+      }
+
+      if (closeButton) {
+        closeButton.onclick = function () {
+          rulesPopup.style.display = "none";
+          rulesPopup.setAttribute("aria-hidden", "true");
+        };
+      }
+
+      window.onclick = function (event) {
+        if (event.target === rulesPopup) {
+          rulesPopup.style.display = "none";
+          rulesPopup.setAttribute("aria-hidden", "true");
+        }
+      };
+    </script>
+  </body>
+</html>
